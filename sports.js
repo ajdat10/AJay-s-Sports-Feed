@@ -1,29 +1,28 @@
-const API_KEY ='1'
-const SPORTS_LIST_URL = `https://www.thesportsdb.com/api/v1/json/${API_KEY}/all_sports.php`
 
-const getSpotsLeague = async () =>{
-    try{ const respones = await axios.get(SPORTS_LIST_URL)
-        buildDropdown(respones.data)
-    // console.log(respones.data) //IT WORKS!!!! Display an array of sports 
+const SPORTS_LIST_URL = `https://www.thesportsdb.com/api/v1/json/1/all_sports.php`
+
+const getSportsLeague = async () =>{
+    try{ 
+        const response = await axios.get(SPORTS_LIST_URL)
+        buildDropdown(response.data)
+    //  console.log(response.data) //IT WORKS!!!! Display an array of sports 
     }catch(error){
         console.log(error)
     }
+}
+    const buildDropdown = (data) => {
+        const dropdownDiv = document.querySelector('.dropdown')
+        const dropdown = document.createElement('select')
+        // console.log(typeof data)
+        data.sports.forEach(sports => {
+            console.log(sports)
+            let optionElement = document.createElement('option')
+            optionElement.innerText = `${sports.strSport}`
+            optionElement.setAttribute('value', sports.strSport)
+            dropdown.appendChild(optionElement)
+        })
+        dropdownDiv.appendChild(dropdown)
+    }
     
-}
-// getSportsLeague
-const buildDropdown = (data)=>{
-    // const dropDownDiv = document.querySelector('.dropdown')
-    const dropdown = document.createElement('select')
-    data.array.forEach(league => {
-        
-    });
-    // dropdown.addEventListener('chanage', getSpotsLeague)
-    // data.array.forEach(league => {
-    //     // console.log(league)
-    // let optionElement = document.createElement('option')
-    // optionElement.innerText = `${league.description}${league.league}`
-    // optionElement.setAttribute('value', league.league)    
-    // });
-    // dropDownDiv.appendChild(dropdown)
-}
-window.onload = getSpotsLeague
+
+window.onload = getSportsLeague

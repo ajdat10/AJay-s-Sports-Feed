@@ -37,7 +37,7 @@ select option {
     background-color: #fafafa;
     text-align: center;
     border:1px solid #bdbdbd;
-    border-radius: 4px;
+    border-radius: 8px;
     width: 60%;
     margin: 1em auto;
 }
