@@ -1,43 +1,39 @@
 body {
+    background: url('https://i.imgur.com/dwZreoe.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
     margin: 0;
     padding: 0;
-    font-family: 'Open Sans', sans-serif;
+    
     background-color: #cfd8dc;    
 }
 
 header {
+    font-family: 'Krona One', sans-serif;
     height: 3em;
     padding: 1em;
     background-color: orangered;
     box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
     display: flex;
     justify-content: center;
+    font-size: x-large;
     align-items: center;
 }
-.dropdown {
-    padding: 1em;
+
+
+li{
+  display: table;
+  *zoom: 1;
+  padding: 50px;
+  margin:0px auto 0px auto;
+  
+}
+li a{
     display: flex;
     justify-content: center;
-}
-select {
-    padding:1em;
-}
-
-select option {
-    padding:1em;
-}
-
-
-.search {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.search .search-result {
-    background-color: #fafafa;
+    align-items: center;
     text-align: center;
-    border:1px solid #bdbdbd;
-    border-radius: 8px;
-    width: 60%;
-    margin: 1em auto;
+    font-size: 60px;
+    color: black;
+    text-decoration: none;    
 }
