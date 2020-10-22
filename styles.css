@@ -37,3 +37,9 @@ li a{
     color: black;
     text-decoration: none;    
 }
+
+section{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
