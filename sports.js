@@ -8,8 +8,7 @@ const getNFL = async () =>{
         const response = await axios.get(SPORTS_LIST_URL)
         displayNBA(response.data)
         getNbaTeams(response.data)
-     
-        // console.log(response.data) //IT WORKS!!!! Display an array of sports 
+
     }catch(error){
         console.log(error)
     }
@@ -18,100 +17,62 @@ const displayNBA = (data) =>{
     
     const displayDiv = document.querySelector('.myData')
     for (let i = 0; i< data.leagues.length; i++){
-        
-        // console.log(data.leagues[i].strSport)
+           
     const nflDiv = document.createElement('div')
-    // nflDiv.innerHTML = `${data.leagues[i].strSports}
-    // ${data.leagues[i].strDescriptionEN}`
-   
-    
-    
-
-   displayDiv.appendChild(nflDiv)
+    displayDiv.appendChild(nflDiv)
     }
-
 }
 const getNbaTeams = async () => {
     try{
         const response = await axios.get(TEAM_LIST_URl)
-        // console.log(response.data)
         buildDropdown (response.data)
     }catch(error){
         console.log(error)
     }
 }
-    const buildDropdown = (data) => {
-        const dropdownDiv = document.querySelector('.dropdown')
-        const dropdown = document.createElement('select')
-        dropdown.addEventListener('change', NflResults)
-        // console.log(typeof data)
-        data.teams.forEach(teams => {
-            // console.log(teams)
-            let optionElement = document.createElement('option')
-            optionElement.innerText = `${teams.strTeam}`
-            optionElement.setAttribute('value', teams.idTeam)
-            dropdown.appendChild(optionElement)
-        })
-        dropdownDiv.appendChild(dropdown)
-       
-    }
-    
-    const NflResults = async (event) => {
-        // console.log(event.target.value)
-        let idTeam = event.target.value
-        const TEAM_CHOICE_URL =`https://www.thesportsdb.com/api/v1/json/1/eventsnext.php?id=${idTeam}`
-        try{
-            const response = await axios.get(TEAM_CHOICE_URL)
+const buildDropdown = (data) => {
+    const dropdownDiv = document.querySelector('.dropdown')
+    const dropdown = document.createElement('select')
+    dropdown.addEventListener('change', NflResults)
+    data.teams.forEach(teams => {
+        let optionElement = document.createElement('option')
+        optionElement.innerText = `${teams.strTeam}`
+        optionElement.setAttribute('value', teams.idTeam)
+        dropdown.appendChild(optionElement)
+    })
+    dropdownDiv.appendChild(dropdown)   
+}
+
+const NflResults = async (event) => {
+    let idTeam = event.target.value
+    const TEAM_CHOICE_URL =`https://www.thesportsdb.com/api/v1/json/1/eventsnext.php?id=${idTeam}`
+    try{
+        const response = await axios.get(TEAM_CHOICE_URL)
             
-            let scheduleData = response.data.events
-            console.log(scheduleData)        
-            const displayNflResults = (data) => {
+        let scheduleData = response.data.events       
+        const displayNflResults = (data) => { 
+            let searchArea = document.querySelector('.search')
+            let resultHeader = document.querySelector('.title')
                 
-                let searchArea = document.querySelector('.search')
-                let resultHeader = document.querySelector('.title')
-                
-                resultHeader.innerText = 'The next five games scheduled....'
-                
-                for (let i = 0; i < data.length; i++){
-                    let currentScheduleDisplay = document.createElement('h5')
-                    let gameDate = document.createElement('h6')
-                    gameDate.innerText = `${data[i].dateEvent}`
-                    currentScheduleDisplay.innerText =  `${data[i].strEvent}`
-                    resultHeader.appendChild(currentScheduleDisplay)
-                    resultHeader.appendChild(gameDate)
-                }
-                
-                searchArea.appendChild(resultHeader)
-                
-                
-                
-        
+            resultHeader.innerText = 'The next five games scheduled....'
+            
+            for (let i = 0; i < data.length; i++){
+                let currentScheduleDisplay = document.createElement('h5')
+                let gameDate = document.createElement('h6')
+                gameDate.innerText = `${data[i].dateEvent}`
+                currentScheduleDisplay.innerText =  `${data[i].strEvent}`
+                resultHeader.appendChild(currentScheduleDisplay)
+                resultHeader.appendChild(gameDate)
             }
-            // console.log(formattedData)
+                
+            searchArea.appendChild(resultHeader)
+            }
+
         displayNflResults(scheduleData)
         }catch(error){
             console.log(error)
         }
     }
-//     const displayNflResults = (scheduleData) => {
-//         let searchArea = document.querySelector('.search')
-//         let resultWrapper = document.createElement('div')
-//         let resultHeader = document.createElement('h1')
-//         let currentScheduleDisplay = document.createElement('h3')
-        
-//         resultHeader.innerText= scheduleData.teamName
-//         currentScheduleDisplay.innerText = `The next few games Scheduled are: ${scheduleData.scheudled}`
-//         resultWrapper.className = 'search-result'
-        
-        
-//         resultWrapper.appendChild(resultHeader)
-//         resultWrapper.appendChild(currentScheduleDisplay)
-//         searchArea.appendChild(resultWrapper)
-        
-        
-
-//     }
-
 window.onload = getNFL()
 
 
