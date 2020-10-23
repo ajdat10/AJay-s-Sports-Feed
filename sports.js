@@ -1,14 +1,12 @@
 
+
 const SPORTS_LIST_URL = `https://www.thesportsdb.com/api/v1/json/1/lookupleague.php?id=4391`
 const TEAM_LIST_URl = `https://www.thesportsdb.com/api/v1/json/1/lookup_all_teams.php?id=4391`
-
-
 const getNFL = async () =>{
     try{ 
         const response = await axios.get(SPORTS_LIST_URL)
         displayNBA(response.data)
-        getNflTeams(response.data)
-
+        getNbaTeams(response.data)
     }catch(error){
         console.log(error)
     }
@@ -22,7 +20,7 @@ const displayNBA = (data) =>{
     displayDiv.appendChild(nflDiv)
     }
 }
-const getNflTeams = async () => {
+const getNbaTeams = async () => {
     try{
         const response = await axios.get(TEAM_LIST_URl)
         buildDropdown (response.data)
@@ -34,7 +32,7 @@ const buildDropdown = (data) => {
     const dropdownDiv = document.querySelector('.dropdown')
     const dropdown = document.createElement('select')
     dropdown.addEventListener('change', NflResults)
-  
+
     data.teams.forEach(teams => {
         let optionElement = document.createElement('option')
         optionElement.innerText = `${teams.strTeam}`
@@ -43,13 +41,13 @@ const buildDropdown = (data) => {
     })
     dropdownDiv.appendChild(dropdown)   
 }
-
 const NflResults = async (event) => {
     let idTeam = event.target.value
     const TEAM_CHOICE_URL =`https://www.thesportsdb.com/api/v1/json/1/eventsnext.php?id=${idTeam}`
     try{
         const response = await axios.get(TEAM_CHOICE_URL)
-      
+
+            console.log(response.data)
         let scheduleData = response.data.events       
         const displayNflResults = (data) => { 
             let searchArea = document.querySelector('.search')
@@ -68,7 +66,6 @@ const NflResults = async (event) => {
                 
             searchArea.appendChild(resultHeader)
             }
-
         displayNflResults(scheduleData)
         }catch(error){
             console.log(error)
@@ -77,5 +74,3 @@ const NflResults = async (event) => {
 
 
 window.onload = getNFL()
-
-
