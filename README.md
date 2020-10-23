@@ -11,7 +11,18 @@
 
 3. On this second page they will be asked to choose a team of their choice from a dropdown to get info back on that specific team
 
+## Example of a function: 
+
+To get information from the result of the dropdown I had to create a function to access this infomation from the API I used:
+
+### Code:
+![alt text](https://i.imgur.com/oxcnvAD.png)
 
 
+### Result:
+![alt text](https://i.imgur.com/sqhYNDD.png)
 
+
+### wireframes:
+![alt text](https://i.imgur.com/7Cy287Z.png?)
 
