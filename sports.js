@@ -34,6 +34,7 @@ const buildDropdown = (data) => {
     const dropdownDiv = document.querySelector('.dropdown')
     const dropdown = document.createElement('select')
     dropdown.addEventListener('change', NflResults)
+  
     data.teams.forEach(teams => {
         let optionElement = document.createElement('option')
         optionElement.innerText = `${teams.strTeam}`
@@ -48,7 +49,7 @@ const NflResults = async (event) => {
     const TEAM_CHOICE_URL =`https://www.thesportsdb.com/api/v1/json/1/eventsnext.php?id=${idTeam}`
     try{
         const response = await axios.get(TEAM_CHOICE_URL)
-            
+            console.log(response.data)
         let scheduleData = response.data.events       
         const displayNflResults = (data) => { 
             let searchArea = document.querySelector('.search')
@@ -73,6 +74,8 @@ const NflResults = async (event) => {
             console.log(error)
         }
     }
+
+
 window.onload = getNFL()
 
 
