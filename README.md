@@ -12,7 +12,6 @@
 3. On this second page they will be asked to choose a team of their choice from a dropdown to get info back on that specific team
 
 ## Example of a function: 
-
 To get information from the result of the dropdown I had to create a function to access this infomation from the API I used:
 
 ### Code:
