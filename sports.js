@@ -7,7 +7,7 @@ const getNFL = async () =>{
     try{ 
         const response = await axios.get(SPORTS_LIST_URL)
         displayNBA(response.data)
-        getNbaTeams(response.data)
+        getNflTeams(response.data)
 
     }catch(error){
         console.log(error)
@@ -22,7 +22,7 @@ const displayNBA = (data) =>{
     displayDiv.appendChild(nflDiv)
     }
 }
-const getNbaTeams = async () => {
+const getNflTeams = async () => {
     try{
         const response = await axios.get(TEAM_LIST_URl)
         buildDropdown (response.data)
@@ -49,7 +49,7 @@ const NflResults = async (event) => {
     const TEAM_CHOICE_URL =`https://www.thesportsdb.com/api/v1/json/1/eventsnext.php?id=${idTeam}`
     try{
         const response = await axios.get(TEAM_CHOICE_URL)
-            console.log(response.data)
+      
         let scheduleData = response.data.events       
         const displayNflResults = (data) => { 
             let searchArea = document.querySelector('.search')
