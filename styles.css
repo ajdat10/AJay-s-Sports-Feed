@@ -1,5 +1,5 @@
 body {
-    background: url('https://i.imgur.com/dwZreoe.jpg');
+    background-image: url('https://i.imgur.com/dwZreoe.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     margin: 0;
@@ -20,26 +20,20 @@ header {
     align-items: center;
 }
 
-
-li{
-  display: table;
-  *zoom: 1;
-  padding: 50px;
-  margin:0px auto 0px auto;
-  
-}
-li a{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+h1 {
+    color: white;
     text-align: center;
+    margin-top: 200px;
     font-size: 60px;
-    color: black;
-    text-decoration: none;    
 }
 
 section{
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+    margin-bottom: -30px;
+}
+
+div{
+    margin-top: 100px;
 }
