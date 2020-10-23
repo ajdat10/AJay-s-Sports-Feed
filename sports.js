@@ -2,6 +2,7 @@
 
 const SPORTS_LIST_URL = `https://www.thesportsdb.com/api/v1/json/1/lookupleague.php?id=4391`
 const TEAM_LIST_URl = `https://www.thesportsdb.com/api/v1/json/1/lookup_all_teams.php?id=4391`
+
 const getNFL = async () =>{
     try{ 
         const response = await axios.get(SPORTS_LIST_URL)
@@ -47,7 +48,6 @@ const NflResults = async (event) => {
     try{
         const response = await axios.get(TEAM_CHOICE_URL)
 
-            console.log(response.data)
         let scheduleData = response.data.events       
         const displayNflResults = (data) => { 
             let searchArea = document.querySelector('.search')
@@ -62,8 +62,7 @@ const NflResults = async (event) => {
                 currentScheduleDisplay.innerText =  `${data[i].strEvent}`
                 resultHeader.appendChild(currentScheduleDisplay)
                 resultHeader.appendChild(gameDate)
-            }
-                
+            } 
             searchArea.appendChild(resultHeader)
             }
         displayNflResults(scheduleData)
@@ -71,6 +70,4 @@ const NflResults = async (event) => {
             console.log(error)
         }
     }
-
-
 window.onload = getNFL()
